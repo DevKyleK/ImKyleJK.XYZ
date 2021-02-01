@@ -1,21 +1,14 @@
-var express = require('express');
-var app = express();
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
-// Enable HTML template middleware
-app.engine('html', require('ejs').renderFile);
-
-// Enable static CSS styles
-app.use(express.static('styles'));
-
-// reply to request with "Hello World!"
-app.get('/', function (req, res) {
-  res.render('index.html');
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-//start a server on port 80 and log its start to our console
-var server = app.listen(80, function () {
-
-  var port = server.address().port;
-  console.log('Example app listening on port ', port);
-
+client.on('message', msg => {
+  if (msg.content === '?test') {
+    msg.reply('Complete!');
+  }
 });
+
+client.login('NjI3NjY4MDEzMjcyNzkzMDg4.XY__Yw.zTUbva7RsTbfZrRgJlUqooszPKA');
